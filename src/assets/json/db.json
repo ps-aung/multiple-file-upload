@@ -1,0 +1,41 @@
+{
+    "totalDocuments": 2,
+    "documents": [
+        {
+            "fileName": "CV.pdf",
+            "downloadUrl": "/documents/download/1",
+            "documentId": 1,
+            "category": ""
+        },
+        {
+            "fileName": "certificate.txt",
+            "downloadUrl": "/documents/download/2",
+            "documentId": 2,
+            "category": ""
+        },
+        {
+            "fileName": "profile.png",
+            "downloadUrl": "/documents/download/1",
+            "documentId": 1,
+            "category": ""
+        },
+        {
+            "fileName": "testing..xlsx",
+            "downloadUrl": "/documents/download/2",
+            "documentId": 2,
+            "category": ""
+        },
+        {
+            "fileName": "testing.docx",
+            "downloadUrl": "/documents/download/1",
+            "documentId": 1,
+            "category": ""
+        },
+        {
+            "fileName": "other.other",
+            "downloadUrl": "/documents/download/2",
+            "documentId": 2,
+            "category": ""
+        }
+    ]
+}
