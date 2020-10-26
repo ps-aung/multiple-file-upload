@@ -1,21 +1,26 @@
-
-<mat-grid-list cols="5" rowHeight="2:1"></mat-grid-list>
-    <mat-grid-tile>
+<h2>User Uploaded Documents</h2>
+<mat-grid-list cols="6">
+    <mat-grid-tile *ngFor="let doc of documents">
         <div class="flip-card">
             <div class="flip-card-inner">
                 <div class="flip-card-front">
-                    <img src="assets/images/pdf.png" alt="Avatar">
-                    <p>pyaesoneaung.txt</p>
+                    <img src="{{doc.downloadUrl}}" alt="Avatar">
+                    <p>{{doc.fileName}}</p>
                 </div>
                 <div class="flip-card-back">
-                    <div class="center"> 
+                    <div class="center">
                         <div class="row">
-                            <button>click</button>
-                            <button>click</button>
+                            <button mat-mini-fab color="primary" (click)="downloadMyFile(doc)">
+                                <mat-icon>cloud_download</mat-icon>
+                              </button>
+                              <button mat-mini-fab color="warn" (click)="deleteMyFile(doc.documentId)">
+                                <mat-icon>delete_forever</mat-icon>
+                              </button>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </mat-grid-tile>
-  </mat-grid-list>
+</mat-grid-list>
+<hr>

@@ -1,7 +1,7 @@
+import { HttpClient, HttpErrorResponse, HttpEventType, HttpParams, HttpRequest, HttpResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import * as _ from 'lodash';
-import { BehaviorSubject, Subscription } from 'rxjs';
-import { HttpResponse , HttpErrorResponse ,HttpRequest , HttpEventType, HttpClient} from '@angular/common/http'
+import { BehaviorSubject, Observable, Subscription } from 'rxjs';
 
 export enum FileQueueStatus {
   Pending,
@@ -44,6 +44,7 @@ export class FileUploaderService {
 
   private _queue: BehaviorSubject<FileQueueObject[]>;
   private _files: FileQueueObject[] = [];
+  private _files_arrary : File[] = [];
 
   constructor(private http: HttpClient) {
     this._queue = <BehaviorSubject<FileQueueObject[]>>new BehaviorSubject(this._files);
@@ -75,9 +76,11 @@ export class FileUploaderService {
     // upload all except already successfull or in progress
     _.each(this._files, (queueObj: FileQueueObject) => {
       if (queueObj.isUploadable()) {
-        this._upload(queueObj);
+        // this._upload(queueObj);
+        this._files_arrary.push(queueObj.file);
       }
     });
+    this._uploadbypsa(this._files_arrary);
   }
 
   // private functions
@@ -129,6 +132,28 @@ export class FileUploaderService {
     );
 
     return queueObj;
+  }
+
+
+  psaUrl = `https://hrms-tb.isgm.info/api/v01/employee-service/admin/documents/upload`;
+  private _uploadbypsa(files : any) {
+    const form = new FormData();
+    _.each(files, (file: File) => {
+      form.append('documents',file);
+    });
+    const req = new HttpRequest('POST', this.psaUrl, form, {
+      reportProgress: true,
+      params: new HttpParams().set('employeeId', '1')
+    });
+    
+    this.http.request(req).subscribe(res => {
+      console.log(res);
+    });
+  }
+
+  docUrl = `http://localhost:3000/EmployeeDoc`;
+  public _getDownloadList(id): Observable<any> {
+    return this.http.get<any>(this.docUrl);
   }
 
   private _cancel(queueObj: FileQueueObject) {

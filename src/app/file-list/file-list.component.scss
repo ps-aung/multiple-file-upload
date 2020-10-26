@@ -3,12 +3,12 @@ body {
 }
 
 img {
-  width: 10vw;
+  width: 8vw;
   height: 10vw;
 }
 .flip-card {
   background-color: transparent;
-  width: 10vw;
+  width: 8vw;
   height: 10vw;
   perspective: 1000px;
 }
@@ -37,13 +37,13 @@ img {
 }
 
 .flip-card-front {
-  background-color: #bbb;
+  // background-color: #bbb;
   color: black;
 }
 
 .flip-card-back {
-  background-color: #2980b9;
-  color: white;
+  background-color: white;
+  // color: white;
   transform: rotateY(180deg);
 }
 .center {
@@ -57,4 +57,9 @@ img {
 p {
   word-break: break-all;
   text-align: justify;
+  padding-top: 5px;
+  font-size: medium;
+  font-weight: 150px;
 }
+
+

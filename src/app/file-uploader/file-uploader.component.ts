@@ -14,6 +14,7 @@ export class FileUploaderComponent implements OnInit {
 
   @ViewChild('fileInput') fileInput;
   queue: Observable<FileQueueObject[]>;
+  isShow : boolean;
 
   constructor(public uploader: FileUploaderService) { }
 
@@ -23,10 +24,12 @@ export class FileUploaderComponent implements OnInit {
   }
 
   completeItem = (item: FileQueueObject, response: any) => {
+    this.isShow = false;
     this.onCompleteItem.emit({ item, response });
   }
 
   addToQueue() {
+    this.isShow = true;
     const fileBrowser = this.fileInput.nativeElement;
     this.uploader.addToQueue(fileBrowser.files);
   }
